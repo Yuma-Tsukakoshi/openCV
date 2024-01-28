@@ -21,4 +21,14 @@ b = torch.from_numpy(a)
 np.add(a, 1, out=a)  
 
 # 1_2_autograd_tutorial
+- requires_grad
+計算結果の履歴を追跡して.grad_fn属性で作成したFunctionを参照
+
+- backward()
+誤差逆伝播法の実行
+
+- grad
+勾配の計算
+
+
 
