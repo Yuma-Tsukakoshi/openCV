@@ -23,7 +23,7 @@ for i in circles[0,:]:
     cv2.circle(cimg, (i[0], i[1]), i[2],(0,255,0), 2)
     cv2.circle(cimg, (i[0], i[1]), 2,(0,0,255), 3) # 中心点に赤い印を描画
 
-# cv2.imshow('detect_circle', cimg)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
+cv2.imshow('detect_circle', cimg)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
     
