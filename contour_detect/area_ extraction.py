@@ -9,14 +9,14 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # 大津の二値化
 ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
-# noise removal
+# オープニングを行い内部のノイズを削除
 kernel = np.ones((3,3),np.uint8)
 opening = cv2.morphologyEx(thresh,cv2.MORPH_OPEN,kernel, iterations = 2)
 
-# sure background area
+# 背景の領域を抽出
 sure_bg = cv2.dilate(opening,kernel,iterations=3)
 
-
+# 前景の領域を抽出 distanseTransformで距離を求める
 dist_transform = cv2.distanceTransform(opening, cv2.DIST_L2, 5)
 ret, sure_fg = cv2.threshold(dist_transform, 0.7*dist_transform.max(), 255, 0)
 
@@ -33,10 +33,9 @@ markers = markers+1
 markers[unknown==255] = 0
 
 markers = cv2.watershed(img,markers)
+# imgで青く塗りつぶす
 img[markers == -1] = [255,0,0]
 
 cv2.imshow('img', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows
-
-# GrabCutを使った対話的前景領域抽出
