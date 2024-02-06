@@ -9,6 +9,9 @@ calibration:  歪みの補正を行うためのモジュール
 
 補正方法： 
 歪みのない画像を10枚ほど準備し、それぞれに対してコーナー検出を行い、歪みパラメータを推定する
+
+姿勢推定を行うこともできる
+
 '''
 
 import numpy as np
@@ -23,8 +26,8 @@ objp = np.zeros((6*7,3), np.float32)
 objp[:,:2] = np.mgrid[0:7,0:6].T.reshape(-1,2)
 
 # Arrays to store object points and image points from all the images.
-objpoints = [] # 3d point in real world space
-imgpoints = [] # 2d points in image plane.
+objpoints = [] # 3次元点
+imgpoints = [] # 2次元点
 
 images = glob.glob('*.jpg')
 
